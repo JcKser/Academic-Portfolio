@@ -1,0 +1,62 @@
+\documentclass[10pt]{article} % <<< sem [twocolumn]
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multicol} % <<< colunas controladas manualmente
+
+\sloppy
+
+\title{Análise e Otimização de Throughput no Protocolo QUIC: \\
+Um Resumo do Artigo ``Understanding QUIC’s Throughput Speedbumps''}
+
+\author{
+    Arthur Mendes \and
+    Júlio César Gonzaga Ferreira Silva \and
+    Kaio Henrique \and
+    Lucas Cabral \and \\
+    Pedro Henrique Gaioso \and
+    Rafael Pereira Vilefort
+}
+
+\address{
+    Pontifícia Universidade Católica de Minas Gerais (PUC Minas)
+}
+
+\begin{document}
+\maketitle
+
+% ===== Resumo e Abstract em largura total (1 coluna) =====
+\begin{resumo}
+\small
+O protocolo QUIC, alternativa moderna ao TCP+TLS, apresenta variações de \textit{throughput} entre diferentes implementações. Com base no artigo “Understanding QUIC’s Throughput Speedbumps”, este trabalho investiga os principais gargalos de desempenho e propõe um modelo de arquitetura paralela, independente de implementação, para otimizar o protocolo.
+\end{resumo}
+
+\begin{abstract}
+\small
+The QUIC protocol, a modern alternative to TCP+TLS, shows throughput variations across implementations. Based on “Understanding QUIC’s Throughput Speedbumps”, this work examines key performance bottlenecks and proposes an implementation-agnostic, parallel architecture model to optimize the protocol.
+\end{abstract}
+
+\vspace{0.5em} % respiro opcional
+
+% ===== Agora sim: ligar as DUAS colunas =====
+\begin{multicols}{2}
+% \small % (opcional) deixe o corpo menor se precisar caber em 1 página
+
+\section{Motivação}
+O QUIC surgiu como alternativa moderna ao TCP+TLS, oferecendo conexões seguras, multiplexadas e de baixa latência no espaço do usuário. Essa flexibilidade acelerou a adoção, mas o \textit{throughput} ainda costuma ficar abaixo do TCP e varia entre implementações, pois o protocolo roda como aplicação e cada pilha utiliza arquiteturas e bibliotecas distintas. O artigo “Understanding QUIC’s Throughput Speedbumps” busca explicar essa variabilidade e propor diretrizes para desempenho padronizado.
+
+\section{Objetivos}
+Identificar e classificar gargalos de \textit{throughput} em pilhas QUIC e sugerir uma arquitetura de alto desempenho, agnóstica de implementação. Foram avaliadas mvfst, picoquic, picoquic-dpdk, MsQuic e quicly em Linux com enlaces de até 25~Gbps, observando impacto de design interno, bibliotecas criptográficas e estratégias de I/O.
+
+\section{Modelo}
+Propõe-se um \textit{pipeline} paralelo de cinco estágios: I/O, UDP/IP, processamento QUIC, criptografia e aplicação. Cada estágio roda de forma assíncrona em \textit{threads} leves com memória compartilhada, aumentando o uso de núcleos e reduzindo esperas. A abordagem é independente de implementação e consolida boas práticas para maximizar \textit{throughput}.
+
+\section{Resultados}
+Em servidores de 25~Gbps, mvfst e quicly registraram ganhos de 1{,}88$\times$ e 1{,}36$\times$; o quicly atingiu 15{,}4~Gbps com MTU 4000~bytes, superando TCP+TLS. O uso conjunto de GSO e GRO reduziu fortemente o custo de I/O, dobrando o \textit{throughput} em alguns cenários. Após essas otimizações, a criptografia permaneceu o principal gargalo, chegando a 55\% do tempo de CPU.
+
+\section{Conclusões e Trabalhos Futuros}
+As diferenças de desempenho entre pilhas QUIC são majoritariamente estruturais. O \textit{pipeline} proposto padroniza práticas e viabiliza alto \textit{throughput} de forma portátil. Futuro: criptografia em unidades maiores (nível de \textit{flow}), aceleração híbrida com hardware e formalização de boas práticas de engenharia para QUIC de alta performance.
+
+\end{multicols}
+\end{document}

@@ -1,0 +1,20 @@
+# MQTT (ajuste com as credenciais do HiveMQ Cloud ou local)
+MQTT_HOST=2ea276b3024d4aa5baee03e5344c16b1.s1.eu.hivemq.cloud
+MQTT_PORT=8883
+MQTT_USERNAME=CaioD
+MQTT_PASSWORD=12345678Ca
+MQTT_TOPIC_FILTER=#
+MQTT_CLIENT_ID=bridge-caio-esp32
+MQTT_TLS_ENABLED=true
+
+# MySQL local
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DB=iotdb
+MYSQL_USER=iotuser
+MYSQL_PASSWORD=SenhaForte!123
+
+# SSL no MySQL (como seu servidor não usa SSL, deixe desativado)
+MYSQL_TLS_ENABLED=false
+MYSQL_SSL_CA=
+MYSQL_VERIFY_CERT=false
