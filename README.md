@@ -2,7 +2,7 @@
 
 # 🎓 Portfólio Acadêmico (PUC Minas)
 
-Este repositório centraliza os projetos e trabalhos desenvolvidos durante minha graduação em [Ciência da Computação].
+Este repositório centraliza os projetos e trabalhos desenvolvidos durante minha graduação em Ciência da Computação.
 
 O conteúdo está organizado cronologicamente por período letivo.
 
@@ -39,3 +39,4 @@ Projetos de pesquisa e desenvolvimento:
 
 ---
 Este projeto está licenciado sob os termos da **Licença MIT** (veja o arquivo `LICENSE` para mais detalhes).
+
