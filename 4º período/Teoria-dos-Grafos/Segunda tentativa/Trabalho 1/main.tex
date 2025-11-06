@@ -1,0 +1,220 @@
+\documentclass{sbc2023}%
+
+\usepackage{graphicx}
+%\usepackage[utf8]{inputenc}
+\usepackage[misc,geometry]{ifsym} 
+\usepackage{fontspec}
+\usepackage{fontawesome}
+\usepackage{academicons}
+\usepackage{color}
+\usepackage{hyperref} 
+\usepackage{aas_macros}
+\usepackage[bottom]{footmisc}
+\usepackage{supertabular}
+\usepackage{afterpage}
+\usepackage{url}
+\usepackage{pifont}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\setcitestyle{square}
+
+\definecolor{orcidlogo}{rgb}{0.37,0.48,0.13}
+\definecolor{unilogo}{rgb}{0.16, 0.26, 0.58}
+\definecolor{maillogo}{rgb}{0.58, 0.16, 0.26}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.0}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+%\hypersetup{colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}
+
+%%%%%%% IMPORTANT: We disable hyperlinks by default with this line, to avoid the error "\pdfendlink ended up in different nesting level" while writing.
+%\hypersetup{draft}
+
+\jid{PUC MINAS}
+\jtitle{PUC MINAS, 2025 }
+\doi{}
+\copyrightstatement{This work is licensed under a Creative Commons Attribution 4.0 International License}
+\jyear{2025}
+
+
+\title[Identificação de Ciclos em Grafos não direcionados]
+
+%THE ORCID IS MANDATORY FOR EACH AUTHOR IN JBCS
+\author[Estudantes et al. 2025]{
+\affil{\textbf{Júlio César Gonzaga Ferreira Silva}~\href{}{\textcolor{orcidlogo}{\aiOrcid}}~\textcolor{blue}{\faEnvelopeO}~~[~\textbf{Pontifícia Universidade Católica de Minas Gerais}~|\href{mailto:ferreiraKser@gmail.com}{~\textbf{\textit{jcgfsilva@sga.pucminas.br}}}~]}
+
+\affil{\textbf{Luiz Fernando Antunes da Silva Frassi}~\href{}{\textcolor{orcidlogo}{\aiOrcid}}~~[~\textbf{Pontifícia Universidade Católica de Minas Gerais}~|\href{mailto:lfasfrassi@sga.pucminas.br}{~\textbf{\textit{lfasfrassi@sga.pucminas.br}}}~]}
+
+\affil{\textbf{Suzane Lemos de Lima}~\href{}{\textcolor{orcidlogo}{\aiOrcid}}~~[~\textbf{Pontifícia Universidade Católica de Minas Gerais}~|\href{mailto:slima@sga.pucminas.br}{~\textbf{\textit{slima@sga.pucminas.br}}}~]}
+
+\affil{\textbf{Rafael Castro Guimarães Cristino}~\href{}{\textcolor{orcidlogo}{\aiOrcid}}~~[~\textbf{Pontifícia Universidade Católica de Minas Gerais}~|\href{mailto:rafael.cristino@sga.pucminas.br}{~\textbf{\textit{rafael.cristino@sga.pucminas.br}}}~]}
+
+\affil{\textbf{Pedro Augusto Gomes Ferreira de Albuquerque}~\href{}{\textcolor{orcidlogo}{\aiOrcid}}~~[~\textbf{Pontifícia Universidade Católica de Minas Gerais~}|\href{pagfalbuquerque@sga.pucminas.br}{~\textbf{\textit{pagfalbuquerque@sga.pucminas.br}}}~]}
+
+}
+
+\begin{document}
+
+\begin{frontmatter}
+\maketitle
+
+\begin{mail}
+Department of Computer Science, Pontifical Catholic University of Minas Gerais (PUC Minas), Av. Dom José Gaspar, 500, Coração Eucarístico, Belo Horizonte, MG, 30535-901, Brazil.
+\end{mail}
+
+
+
+
+\begin{abstract}
+Abstract: Grafos desempenham papel crucial na resolução de problemas computacionais em diversas áreas, tais como análise de redes, otimização de rotas e modelagem de sistemas complexos. Este trabalho implementa e compara duas metodologias distintas para a identificação de ciclos em grafos não direcionados: uma baseada em permutações de vértices e outra baseada em busca em profundidade (caminhamento em grafos). Ambas as abordagens foram implementadas utilizando listas de adjacência e avaliadas quanto ao desempenho computacional e precisão dos resultados. Os experimentos realizados evidenciam trade-offs significativos entre essas abordagens, destacando variações de desempenho relacionadas ao tamanho e à estrutura do grafo analisado.
+\end{abstract}
+
+\begin{keywords}
+Algoritmos em Grafos, Detecção de Ciclos, Grafos Não Direcionados, Caminhamento em Grafos, Complexidade Computacional, CPP
+\end{keywords}
+
+%\begin{license}
+%Published under the Creative Commons Attribution 4.0 International Public License (CC BY 4.0)
+%\end{license}
+
+\end{frontmatter}
+
+
+\section{Introdução}
+\label{sec:intro}
+
+Algoritmos baseados em grafos desempenham um papel fundamental na resolução de problemas em diversas áreas, como análise de redes sociais, otimização de rotas e modelagem de sistemas biológicos. Um problema clássico nesse domínio é a enumeração de ciclos em grafos não-direcionados, que consiste em identificar todas as sequências fechadas de vértices sem repetições intermediárias. Essa tarefa possui aplicações práticas, como detecção de redundâncias em redes ou análise de conectividade, mas apresenta desafios computacionais à medida que o tamanho do grafo aumenta. Neste trabalho, implementamos e comparamos duas abordagens distintas para resolver esse problema: uma baseada na permutação de vértices e outra utilizando caminhamento no grafo, ambas desenvolvidas em C/C++. Nosso objetivo é avaliar o desempenho dessas soluções em termos de eficiência, considerando diferentes tamanhos de grafos. Este relatório descreve as implementações, os experimentos realizados e os resultados obtidos, além de uma análise comparativa entre os métodos
+
+ 
+\section{Metodologia do caminhamento}
+Nesta seção, descrevemos a representação do grafo adotada, os detalhes da implementação do algoritmo baseado em caminhamento.
+
+\subsection{Representação do Grafo}
+O grafo foi representado utilizando uma lista de adjacência implementada na classe graphVet. Cada vértice é um objeto da classe vertice, que armazena um identificador (uVertice), um indicador de visitação (visitado), um ponteiro para os vizinhos (prox) e um vetor de caminhos (caminho) que registra as sequências exploradas. A escolha por listas de adjacência foi motivada por sua eficiência em grafos esparsos, comuns em aplicações reais, e pela facilidade de acesso aos vizinhos de um vértice, essencial para o algoritmo de caminhamento.
+
+
+\subsection{Implementação do Algoritmo de Caminhamento}
+O algoritmo implementado para enumerar ciclos é baseado em uma busca em profundidade \textbf{DFS} modificada, conforme a função \textbf{dfs}. Para cada vértice inicial 
+\textbf{v}
+do grafo 
+\textbf{G=(V,E)}, o algoritmo explora recursivamente os vizinhos por meio da função deep, rastreando caminhos e identificando ciclos. O processo funciona da seguinte forma:
+
+\begin{itemize}
+\item \textbf{Exploração Recursiva:} A função deep visita os vizinhos de 
+\textbf{v} (obtidos por ShowProx) e constrói caminhos no formato \textbf{u-v}, evitando revisitar vértices já marcados como visitados ou caminhos duplicados \textbf{verificados por ExisteCaminho}. Quando um vizinho é explorado, ele é adicionado ao caminho atual e a busca continua recursivamente.
+
+\item \textbf{Detecção de Ciclos:} Um ciclo é identificado quando um caminho tem mais de dois vértices 
+\textbf{k > 2} e retorna ao vértice inicial, conforme filtrado em \textbf{contarStrings2}. A função removePermutacoesIguais elimina ciclos equivalentes 
+(ex.: "0-1-2-0" e "1-2-0-1").
+
+\item \textbf{Saída:} Os ciclos são armazenados em ciclo e exibidos com o número total calculado por \textbf{vet.size()}.
+
+\item O grafo de teste padrão \textbf{SetDefault} constrói um gráfico equivalente ao exemplo do enunciado.
+
+\end{itemize}
+
+
+\section{Metodologia da permutação}
+
+Nesta seção, descrevemos a representação do grafo adotada, os detalhes da implementação do algoritmo baseado em permutação.
+
+
+\subsection{Representação do Grafo}
+O grafo foi representado utilizando uma matriz de adjacência implementada como um vetor bidimensional de booleanos \textbf{(vector<vector<bool>> adj)}. Essa escolha foi motivada pela simplicidade de verificar a existência de arestas entre vértices, uma operação frequente no algoritmo de permutação. Cada posição \textbf{adj[u][v]} indica se há uma aresta entre os vértices u e v. Para um grafo com 
+\textbf{V} vértices, a matriz possui tamanho 
+\textbf{V×V}, com valores true para arestas existentes e false caso contrário. Apesar de a matriz de adjacência ocupar 
+\textbf{O\( (v^2) \).} 
+em memória, ela foi adequada para os experimentos com grafos pequenos, como o da Figura 1 do enunciado, e permitiu uma implementação direta do algoritmo.
+
+\paragraph{Descrição da Implementação: Algoritmo de Permutação de Vértices}
+O algoritmo proposto para encontrar ciclos baseia-se na geração de subconjuntos de vértices e na verificação de ciclos válidos por meio de permutações. A implementação foi realizada em C++ e segue os seguintes passos:
+
+\subsection{Implementação do Algoritmo de Permutação}
+\begin{itemize}
+\item \textbf{Geração de Subconjuntos:} A função gerarSubconjuntos utiliza uma abordagem binária para criar todos os subconjuntos possíveis dos 
+\textbf{V} vértices do grafo. Para 
+\textbf{n} vértices, são gerados 
+\textbf{\( 2^n-1 \)}
+subconjuntos (\textbf{excluindo o vazio}), mas apenas aqueles com 3 ou mais vértices são considerados, pois ciclos com menos de 3 vértices não existem em grafos simples não-direcionados.
+
+\item \textbf{Verificação de Ciclos:} Para cada subconjunto, a função 
+\textbf{next\_permutation} da biblioteca padrão de C++ é utilizada para gerar todas as permutações dos vértices no subconjunto.
+Uma permutação é considerada um ciclo se:
+Existe uma aresta entre cada par de vértices consecutivos \textbf{(adj[sub[i]][sub[i+1]]=true)}.
+Existe uma aresta entre o último e o primeiro vértice \textbf{(adj[sub[sub.size()−1]][sub[0]]=true)}.
+
+\item \textbf{Eliminação de Redundâncias:} Como diferentes permutações podem representar o mesmo ciclo (ex.: 
+\textbf{0→1→2→0} e 
+\textbf{1→2→0→1}), os vértices de cada ciclo válido são armazenados em um \textbf{set<int>} (conjunto ordenado), e os ciclos únicos são mantidos em um \textbf{set<set<int>>}. Isso garante que cada ciclo seja contado apenas uma vez, independentemente da ordem ou do ponto de início.
+
+\item \textbf{Saída:} Os ciclos únicos são exibidos no formato de sequência circular, repetindo o primeiro vértice ao final para indicar o fechamento do ciclo (ex.: \textbf{0 1 2 0}).
+
+\end{itemize}
+
+\section{Conclusão}
+Conclusão e reflexão dos dados obtidos
+
+\subsection{Grafo direcionado}
+Com relação aos algoritmos feitos, é perfeitamente possível adaptá-lo para funcionar em um grafo direcionado. No caso da nossa implementação específica, desenvolvida em C++, não seriam necessárias alterações significativas, já que o grafo não direcionado é interpretado como um caso especial de grafo direcionado. Isso ocorre porque um grafo não direcionado pode ser modelado como um grafo direcionado com arestas bidirecionais (ou seja, para cada aresta 
+\textbf{u,v}, existem 
+\textbf{(u,v)} e 
+\textbf{(v,u)} em 
+\textbf{E}). Nossa implementação já considera a existência de arestas entre vértices adjacentes durante o caminhamento, utilizando uma abordagem que, implicitamente, suporta essa equivalência. Assim, o algoritmo de caminhamento, construído para explorar caminhos e identificar ciclos em grafos não direcionados, mantém sua funcionalidade em grafos direcionados.
+
+
+\subsection{Desempenho}
+
+\textbf{Caminhamento}
+\begin{enumerate}%
+\item Grafo completo com 4 vértices: O tempo de execução foi de \textbf{6070 microssegundos}.
+\item Grafo padrão (do exemplo): O tempo de execução foi de \textbf{37158 microssegundos}.
+\item Grafo completo com 8 vértices: O tempo de execução foi de \textbf{49884671 microssegundos}.
+\end{enumerate}
+
+\textbf{Permutação}
+\begin{enumerate}%
+\item Grafo completo com 4 vértices: O tempo de execução foi de \textbf{618 microssegundos}.
+\item Grafo padrão (do exemplo): O tempo de execução foi de \textbf{15488 microssegundos}.
+\item Grafo completo com 8 vértices: O tempo de execução foi de \textbf{539602 microssegundos}.
+\end{enumerate}
+
+\par Devido à quantidade de operadores e métodos de ajuste utilizados no caminhamento, ele se torna extremamente lento, dando à permutação uma grande vantagem em termos de velocidade.
+
+
+
+
+
+
+
+
+
+
+
+\section*{Responsabilidades do Grupo}
+
+\subsection*{Contribuições dos Autores}
+
+\paragraph{}
+\textbf{Luiz Fernando} e \textbf{Júlio César} foram responsáveis pelo algoritmo de caminhamento.
+\paragraph{}
+\textbf{Pedro Augusto} foi responsável pelo algoritmo de permutação.
+\paragraph{}
+\textbf{Rafael Castro} e \textbf{Suzane Lemos} descreveram os detalhes da implementação, os experimentos e os resultados obtidos.
+
+%JCGFS, LFASF e PAGFA contribuiu com a concepção do estudo, desenvolvimento das implementações em C/C++, execução dos experimentos e análise comparativa dos resultados. SLL e  RCGC contribuíram na definição da metodologia, interpretação dos resultados e revisão crítica do manuscrito. Todos os autores leram e aprovaram a versão final deste trabalho.
+
+
+% ??
+%\subsection*{Agradecimentos} Os autores agradecem ao Prof. Silvio Jamil F. Guimarães pelo suporte técnico e acadêmico fornecido durante o desenvolvimento deste trabalho.
+
+% ??
+%\subsection*{Financiamento} Esta pesquisa não recebeu financiamento específico de nenhuma agência pública, comercial ou organização sem fins lucrativos.
+%\end{funding}
+
+% ??
+%\subsection*{Disponibilidade de dados e materiais} Os conjuntos de dados e códigos utilizados e analisados durante este estudo poderão ser disponibilizados mediante solicitação ao autor correspondente através de um dos e-mails.
+
+
+
+\end{document}

@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Relatório}
+\author{Júlio César Gonzaga Ferreira Silva}
+\date{August 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Descrição do que foi feito:}
+ O objetivo deste programa é gerar e imprimir todos os subgrafos possíveis de um grafo completo com n vértices, onde n é informado pelo usuário. Além disso, o programa informa o número total de subgrafos gerados. A priori pedi para o número de vértices para descobrir o número de arestas, que é n(n-1) / 2, onde n é o numero de vértices.
+ 
+ Metodologia Utilizada: O programa gera todas as possíveis arestas do grafo completo utilizando dois loops alinhados. Cada aresta é representada como um par de inteiros, onde o primeiro inteiro é o vértice de inicial e o segundo é o vértice de destino. Essas arestas são armazenadas em um vetor de pares (vector<pair<int, int>>).
+
+Geração de Subgrafos:
+Para gerar todos os subgrafos, utilizamos uma abordagem baseada em máscaras de bits. Como o número total de arestas é numArestas, cada subgrafo pode ser representado por uma combinação das arestas presentes.
+
+Cada subgrafo é gerado iterando sobre todas as possíveis máscaras de bits de comprimento numArestas.
+Se o k-ésimo bit da máscara estiver ativado, a aresta correspondente é incluída no subgrafo.
+Impressão dos Subgrafos:
+Para cada máscara de bits, o programa imprime o subgrafo correspondente, exibindo todas as arestas que estão presentes nele.
+
+\end{document}

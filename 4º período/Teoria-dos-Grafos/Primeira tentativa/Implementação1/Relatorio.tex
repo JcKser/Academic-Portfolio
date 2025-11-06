@@ -1,0 +1,42 @@
+\documentclass{article}
+
+
+\begin{document}
+
+{\bfseries \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Relat\'orio das implementa\c{c}\~oes}
+
+A principio devido uma falha na minha interpreta\c{c}\~ao comecei o trabalho separando as implementa\c{c}\~oes em partes, para ap\'os o t\'ermino juntando tudo em um s\'o. N\~ao vou mentir, devido o tempo sem o uso da linguagem C++, foi dif\'{\i}cil retomar alguns conceitos, principalmente as estruturas. Ap\'os algumas pesquisas consegui implementar.
+
+Implementa\c{c}\~ao 1, Lista Encadeada: Utilizei uma classe e uma struct para facilitar a implementa\c{c}\~ao do m\'etodo, onde na estrutura foram declarados o elemento para armazenar o valor e o ponteiro para apontar para o pr\'oximo. Na classe, um ponteiro para o inicio da Lista, al\'em do construtor para inicializa-lo e um destrutor para liberar mem\'oria. Criei 4 m\'etodos, insert, delete, search e mostrar. A priori o m\'etodo mostrar era s\'o um b\'asico para eu entender oque estava acontecendo, no insert, caso o inicio apontasse para um espa\c{c}o vazio o novo elemento \'e inserido ali, se n\~ao ocorre um loop ao qual enquanto o \ ponteiro auxiliar quando for para o pr\'oximo for diferente de vazio ele vai continuar em loop at\'e chegar no final da lista e inserir. O delete de primeira inst\^ancia pensei que era um elemento em especifico, mas depois eu mudei praticamente faz a mesma coisa que o insert, s\'o que ela ao inv\'es de procurar por um espa\c{c}o vazio, o loop procura espa\c{c}o cheios enquanto o valor k de elementos \ for maior que 0.
+
+\ \ \ \ Implementa\c{c}\~ao 2, Pilha: Em si n\~ao foi muito dif\'{\i}cil, utilizei da pr\'opria biblioteca 
+
+\textless{}stack\textgreater{}, aproximadamente a mesma l\'ogica da fila no entanto, usando fun\c{c}\~oes da
+
+pr\'opria biblioteca pop(), push(), empty(). Onde, em cada m\'etodo dos 4 utilizei 
+
+a devida fun\c{c}\~ao da biblioteca, para inserir, deletar, mostrar e buscar. Um pouco
+
+mais f\'acil devido essa facilidade da biblioteca mas seguindo a mesma l\'ogica, sendo a 
+
+que remove os elementos, a partir do ultimo elemento adicionado.
+
+\ \ \ Implementa\c{c}\~ao 3, Fila: Mesmo esquema de pilha foi utilizado a biblioteca \textless{}queue\textgreater{}, 
+
+na mesma l\'ogica que a de pilha com uma pequena diferen\c{c}a no ato de remover \'e a que 
+
+remove os elementos a partir do primeiro elemento adicionado. 
+
+\ \ Implementa\c{c}\~ao 4, Matriz de Inteiros: A Matriz de Inteiros foi feita para gerenciar
+
+\ uma matriz com dimens\~oes configur\'aveis, permitindo a adi\c{c}\~ao, verifica\c{c}\~ao e remo\c{c}\~ao 
+
+de elementos, bem como a exibi\c{c}\~ao da matriz.
+
+Cada estrutura foi abordada com a aplica\c{c}\~ao pr\'atica de conceitos de programa\c{c}\~ao e 
+
+estruturas de dados, aproveitei as funcionalidades fornecidas pelas bibliotecas 
+
+padr\~ao do C++ e t\'ecnicas personalizadas para atender aos requisitos do projeto.
+
+\end{document}

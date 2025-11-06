@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Documentação Simples dos Algoritmos de Caminhos em Grafos}
+\author{Júlio César Gonzaga Ferreira Silva}
+\date{October 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+Neste documento, vou explicar de forma simples como funcionam três algoritmos para encontrar diferentes tipos de caminhos em um grafo. Os algoritmos são:
+\begin{itemize}
+    \item Dijkstra: encontra o caminho mais curto.
+    \item Max-Min: encontra o caminho com o maior valor mínimo possível.
+    \item Min-Max: encontra o caminho onde o maior valor é o menor possível.
+\end{itemize}
+
+Cada um desses algoritmos serve para resolver diferentes tipos de problemas. Vou detalhar cada um deles logo abaixo.
+
+\section{Dijkstra: Caminho Mais Curto}
+O algoritmo de Dijkstra é usado para encontrar o caminho mais curto de um ponto a outro. Imagine que você está em uma cidade e quer encontrar a rota mais rápida para chegar a qualquer outro lugar. O Dijkstra faz isso, considerando que as estradas (ou seja, as arestas do grafo) têm um "peso", que pode ser a distância ou o tempo.
+
+\subsection{Como Funciona}
+O algoritmo começa no ponto de partida (chamado de "origem") e vai verificando todas as rotas possíveis. Ele sempre escolhe a rota mais curta que encontrou até o momento e vai atualizando as distâncias para cada destino.
+
+Basicamente, ele vai fazendo comparações e atualizações até ter certeza de que encontrou a menor distância para cada ponto.
+
+\section{Max-Min: Caminho com o Maior Valor Mínimo}
+Este algoritmo é um pouco diferente. Em vez de procurar o caminho mais curto, ele tenta garantir que o ponto mais "fraco" da rota seja o mais forte possível. 
+
+\subsection{Como Funciona}
+Vamos pensar em uma estrada onde a largura das pistas varia. O Max-Min vai encontrar o caminho onde a pista mais estreita (ou seja, o ponto mais fraco) seja a mais larga possível. Ele sempre tenta maximizar o menor valor encontrado em cada rota.
+
+\section{Min-Max: Caminho com o Menor Valor Máximo}
+Este algoritmo faz o oposto do Max-Min. Ele encontra o caminho onde o maior valor ao longo da rota seja o menor possível. Isso é útil quando você quer evitar estradas muito ruins, mesmo que elas apareçam apenas uma vez na rota.
+
+\subsection{Como Funciona}
+Imagine que você quer evitar estradas com muitas curvas. O Min-Max vai procurar um caminho onde a curva mais acentuada (o ponto mais "ruim") seja a menos acentuada possível, garantindo que o maior problema da rota seja o menor possível.
+
+\section{Conclusão}
+Cada um desses algoritmos tem sua utilidade, dependendo do tipo de problema que você está tentando resolver. Se você quer a rota mais rápida, use Dijkstra. Se quer evitar o ponto mais fraco, vá com Max-Min. E se quer minimizar os piores problemas, o Min-Max é a escolha certa.
+
+\end{document}
