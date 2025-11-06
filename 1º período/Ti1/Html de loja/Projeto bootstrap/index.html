@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto_Bootstrap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fundo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+       <script src="https://kit.fontawesome.com/d1e19f487e.js" crossorigin="anonymous"></script>          
+       
+</head>
+<body style="min-width: 200px;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-lg mb-3" style="border-color: black;">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <img src="image/Logotipo.png" class="img-fluid">
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Carrinho
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logar/Registra</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" id="dados">Dados</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="Pesquisa">
+          <input class="form-control me-2" type="Pesquisa" placeholder="Pesquisa por produto, marca, tipo de tênis, mais avaliados ou mais comprados" aria-label="Pesquisa">
+          <button class="btn btn-outline-success" type="submit">Busca</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+  <div id="dados-card" class="dados-card">
+    <h5 class="card-title">Dados</h5>
+    <p class="card-text">Nome: Júlio César Gonzaga Ferreira Silva<br>Curso: Ciência da Computação<br>Matrícula: 810642</p>
+  </div>
+  
+  <script>
+    var dadosLink = document.getElementById('dados');
+    var dadosCard = document.getElementById('dados-card');
+    
+    dadosLink.addEventListener('mouseenter', function() {
+      dadosCard.style.display = 'block';
+    });
+    
+    dadosLink.addEventListener('mouseleave', function() {
+      dadosCard.style.display = 'none';
+    });
+  </script>
+      <header>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="carouselExampleControls" class="carousel slide w-100" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="image/Ae 86.png" class="d-block img-fluid mx-auto" alt="..." style="max-height:600px;">
+                    <div class="carousel-caption d-md-block text-center align-middle">
+                      <h5 style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">NO-BRAINER x Nike Dunk Low "AE86"</h5>
+                      <p style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">Tênis da Nike em parceria com a NO-BRAINER um dos exclusivos da loja e raros, inspirados no famoso carro japonês Toyota AE86.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="image/Off white.jpg" class="d-block img-fluid mx-auto" alt="..." style="max-height:600px;">
+                    <div class="carousel-caption d-md-block text-center align-middle">
+                      <h5 style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">Air Jordan 4 Retro Off-White Sail'</h5>
+                      <p style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">OFF-WHITE x Wmns Air Jordan 4 'Sail' lançado como parte de uma colaboração entre a marca de luxo de Virgil Abloh e Jordan Brand. Um dos exclusivos da Loja.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="image/Bad bunny.jpg" class="d-block img-fluid mx-auto" alt="..." style="max-height:600px;">
+                    <div class="carousel-caption d-md-block text-center align-middle">
+                      <h5 style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;">Adidas Forum Buckle Low Bad Bunny Last Forum</h5>
+                      <p style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black">Bad Bunny e adidas juntam-se novamente para reinventar uma silhueta icônica do basquetebol. O Bad Bunny x adidas Forum Buckle Low 'White' apresenta uma parte superior em couro branco com sobreposições de camurça a condizer e a marca registrada de três riscas é camurça cinzenta.</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+          </div>
+        </div>
+
+        <section class="container-fluid">
+          <div class="mt-3">
+          <div class="row ms-1 me-1 d-flex flex-wrap justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-12 col-12">
+              <aside class="border border-1 border-secondary lh-1 bg-secondary-subtle p-3 xsQuick rounded">
+                <p class="fs-6 fw-bold text-center">BUSCA RÁPIDA</p>
+                <p class="fs-6 text-wrap fw-light text-center">Ache seu produto pelo melhor preço</p>
+                <p class="text-primary text-center" onclick="retornaPesquisa('men\'s clothing')" style="cursor: pointer;">Masculino</p>
+                <p class="text-primary text-center" onclick="retornaPesquisa('jewelery')" style="cursor: pointer;">Joalheria</p>
+                <p class="text-primary text-center" onclick="retornaPesquisa('electronics')" style="cursor: pointer;">Eletrônicos</p>
+                <p class="text-primary text-center" onclick="retornaPesquisa('women\'s clothing')" style="cursor: pointer;">Feminino</p>
+              </aside>
+            </div>
+          </div>
+       </div>
+        </section>
+      
+        
+        <div id="searchResultsTittle"></div>
+        <div id="searchResults" class="d-flex flex-wrap justify-content-center">
+          <!-- Conteúdo do card aqui -->
+        </div>
+        
+      </header>
+
+      
+
+
+   <main> 
+    <section class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-9">
+          <h1 class="text-primary">Nossos Produtos</h1>
+          <div id="exibeProdutos" class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <div class="row"> < !--  produtos mais vendidos-- > 
+      <h2 class="text-center text-white">Produtos mais vendidos</h2>
+      <ul class="list-group list-group-horizontal flex-wrap-nowrap">
+          <li class="list-group-item">
+              <img src="image/nike-air-force-1-low-tenis-1024x514.jpg" alt=" Nike Air Force 1 Low " style="width: 100%;">
+              <div class="rating text-dark">
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </div>
+                <p class="text-dark">Nike Air Force 1 Low</p>
+                <div class= "card-header">
+                  R$800,00
+              </div> 
+                <p class="text-dark">5.0 (15k)</p>
+                
+              </div>
+            </li>
+            <li class="list-group-item">
+              <img src="image/Kaws.png" alt=" KAWS x Air Jordan 4 Retro Cool Grey " style="width: 40%;">
+              <div class="rating text-dark">
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star-o"></span>
+                </div>
+                <p class="text-dark">KAWS x Air Jordan 4 Retro Cool Grey </p>
+                <div class= "card-header">
+                  R$ 625,90
+              </div> 
+                <p class="text-dark">4.8 (10k)</p>
+                
+              </div>
+            </li>
+            <li class="list-group-item">
+              <img src="image/Air max.jpg" alt="  Nike Air Max 270 " style="width: 100%;">
+              <div class="rating text-dark">
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </div>
+                <p class="text-dark"> Nike Air Max 270 </p>
+                <div class= "card-header">
+                  R$ 559,90
+               </div> 
+                <p class="text-dark">5 (5k)</p>
+                
+              </div>
+              <li class="list-group-item">
+                  <img src="image/Vapor.jpg" alt="Nike Air Vapormax Plus " style="width: 80%;">
+                  <div class="rating text-dark">
+                    <div class="rating">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-o"></span>
+                    </div>
+                    <p class="text-dark">Nike Air Vapormax Plus </p>
+                    <div class= "card-header">
+                      499,90
+                   </div> 
+                    <p class="text-dark">4.8 (4k)</p>
+                   
+                  </div>
+                  <li class="list-group-item">
+                      <img src="image/Jordan-I-High-OG-1024x631.jpg" alt="Jordan I High OG " style="width: 100%;">
+                      <div class="rating text-dark">
+                        <div class="rating">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                        </div>
+                        <p class="text-dark">Jordan I High OG </p>
+                        <div class= "card-header">
+                          R$ 909,99
+                       </div> 
+                        <p class="text-dark">5.0 (4.8k)</p>
+                       
+                      </div>
+                </li>
+                <li class="list-group-item">
+                  <img src="image/Adidas.jpg" alt="Adidas NMD R1 " style="width: 100%;">
+                  <div class="rating text-dark">
+                    <div class="rating">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-o"></span>
+                    </div>
+                    <p class="text-dark">Adidas NMD R1 </p>
+                    <div class= "card-header">
+                      R$2500,00
+                   </div> 
+                    <p class="text-dark">4.5 (3.8k)</p>
+                   
+                  </div>
+            </li>
+            </li>
+            <li class="list-group-item text-center">
+              <button class="btn btn-primary">Ver mais</button>
+            </li>
+          </ul>
+        
+      </div>
+    
+  </div>
+</main>
+    
+
+           <footer class="bg-dark text-white py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <h4>Quick Links</h4>
+                  <ul class="list-unstyled">
+                    <li><a href="#">Ajuda</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Política de envio</a></li>
+                    <li><a href="#">Política d privacidade</a></li>
+                    <li><a href="#">Cancelamento & devolução</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4">
+                  <h4>Contato</h4>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-map-marker"></i> R. Dom José Gaspar, 500 - Coração Eucarístico, B.Horizonte - MG, 30535-901</li>
+                    <li><i class="fa fa-phone"></i> (31) 99944-2711</li>
+                    <li><i class="fa fa-envelope"></i> ferreiraKser@gmail.com</li>
+                  </ul>
+                </div>
+                <div class="col-md-4">
+                  <h4>Siga-nos</h4>
+                  <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+      
+    
+          <script src="variaveis.js"></script>
+          <script src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+</body>
+</html>

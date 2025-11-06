@@ -1,0 +1,71 @@
+.navbar-brand {
+    font-family: Brush Script MT ;
+    font-size: small;
+    
+  }
+  .navbar {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(45,18,88,1) 35%, rgba(40,3,98,1) 100%);
+  }
+  .img-fluid {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  body {
+    background: radial-gradient(circle, rgba(48,13,77,1) 0%, rgba(0,0,0,1) 100%);
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  
+  .checked {
+    color: orange;
+  }
+  
+  /* Estilo para estrelas vazias */
+  .fa-star-o {
+    color: gray;
+  }
+  .navbar {
+    border-radius: 10px;
+ }
+ .main {
+  margin-top: 50px;
+}
+
+footer {
+  border-radius: 10px 10px 0 0;
+}
+.list-group-horizontal {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+
+
+.card {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px; /* Ajuste a altura desejada */
+}
+.dados-card {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none;
+}
