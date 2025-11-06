@@ -1,0 +1,294 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ExemploString2$ExemploString",
+            "request": "launch",
+            "mainClass": "Strings.ExemploString2$ExemploString",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploString",
+            "request": "launch",
+            "mainClass": "Strings.ExemploString",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays18",
+            "request": "launch",
+            "mainClass": "ExemploArrays18",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays16",
+            "request": "launch",
+            "mainClass": "ExemploArrays16",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays15",
+            "request": "launch",
+            "mainClass": "ExemploArrays15",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays14",
+            "request": "launch",
+            "mainClass": "ExemploArrays14",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays13",
+            "request": "launch",
+            "mainClass": "ExemploArrays13",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays12",
+            "request": "launch",
+            "mainClass": "ExemploArrays12",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays11",
+            "request": "launch",
+            "mainClass": "ExemploArrays11",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays10",
+            "request": "launch",
+            "mainClass": "ExemploArrays10",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays9",
+            "request": "launch",
+            "mainClass": "ExemploArrays9",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays8",
+            "request": "launch",
+            "mainClass": "ExemploArrays8",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays7",
+            "request": "launch",
+            "mainClass": "ExemploArrays7",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays6",
+            "request": "launch",
+            "mainClass": "ExemploArrays6",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays5",
+            "request": "launch",
+            "mainClass": "ExemploArrays5",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays4",
+            "request": "launch",
+            "mainClass": "ExemploArrays4",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays3",
+            "request": "launch",
+            "mainClass": "ExemploArrays3",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays2",
+            "request": "launch",
+            "mainClass": "ExemploArrays2",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploArrays",
+            "request": "launch",
+            "mainClass": "ExemploArrays",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplofor2",
+            "request": "launch",
+            "mainClass": "Exemplofor2",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplofor1",
+            "request": "launch",
+            "mainClass": "Exemplofor1",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile8",
+            "request": "launch",
+            "mainClass": "Exemplowhile8",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile7",
+            "request": "launch",
+            "mainClass": "Exemplowhile7",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile6",
+            "request": "launch",
+            "mainClass": "Exemplowhile6",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile5",
+            "request": "launch",
+            "mainClass": "Exemplowhile5",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile4",
+            "request": "launch",
+            "mainClass": "Exemplowhile4",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile3",
+            "request": "launch",
+            "mainClass": "Exemplowhile3",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile2",
+            "request": "launch",
+            "mainClass": "Exemplowhile2",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ExemploBufferReader",
+            "request": "launch",
+            "mainClass": "ExemploBufferReader",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf",
+            "request": "launch",
+            "mainClass": "ExemploIf",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf2",
+            "request": "launch",
+            "mainClass": "ExemploIf2",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf3",
+            "request": "launch",
+            "mainClass": "ExemploIf3",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf4",
+            "request": "launch",
+            "mainClass": "ExemploIf4",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf5",
+            "request": "launch",
+            "mainClass": "ExemploIf5",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf6",
+            "request": "launch",
+            "mainClass": "ExemploIf6",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf7",
+            "request": "launch",
+            "mainClass": "ExemploIf7",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf8",
+            "request": "launch",
+            "mainClass": "ExemploIf8",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploIf9",
+            "request": "launch",
+            "mainClass": "ExemploIf9",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "ExemploScanner",
+            "request": "launch",
+            "mainClass": "ExemploScanner",
+            "projectName": "Exercicios 00g_34ba569f"
+        },
+        {
+            "type": "java",
+            "name": "Exemplowhile1",
+            "request": "launch",
+            "mainClass": "Exemplowhile1",
+            "projectName": "Exercicios 00g_34ba569f"
+        }
+    ]
+}
