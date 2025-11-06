@@ -1,0 +1,64 @@
+void loop() (
+
+i£ (Serial available() > 0) (
+digitalWrize(pinoâzul, LOW)
+digitalWrize(pinoVerde, LOW);
+digitalWrize(pinoâmarelo, LOW);
+digitalWrize(pinoVermelho, LOW);
+
+J/leitura das entradas e do opcode
+entradsh = Serial parseinc();
+entradaB = Serial parselnt()
+OPcode = Serial.parseinc();
+
+[impressão das entradas e do opcode escolhido
+Serial .print("entradak= *)
+
+Serial printin (entradah)
+Serial print ("entradaB=
+Serial printin (entradaB)
+Serial print ("OPcode= ");
+Serial printin (OPcode) ;
+
+4) Acende LEDs para entradsh e entradaB
+digitalWrize(pinoVermelho, entradah)
+digitalhrize(pinoânarelo, entradaB)
+
+4! Realiza as operações de acordo com o OPcode
+switch (OPcode) (
+
+case 0:
+saida = funcacAND(entradaA, entradaB) ;
+Serial.print("AND= ");
+Serial príntin (saida);
+digitalfirite (pinoVerde, saída);
+break;
+
+case 1
+saida = funcacOR(entradaa, entradaB);
+Serial.print("OR= ");
+Serial.println (saida);
+digitalfirize (pinoVerde, saida);
+break;
+
+case 2:
+saida = funcacNOT (entrada) ;
+Serial.print("NOT encradaã= ");
+Serial.printin (saida);
+digitalfirite (pinoVerde, saida);
+rea
+
+case 3
+saida = funcacSona (envradaR, entradaB);
+Serial.print("Sona= ");
+Serial.println (saida);
+if (saida == 1) (
+
+digitalWrite (pinoVerde, HIGH);
+) else if (saida == 2) (
+digitalirite(pinoâzul, HIGH);
+
+)
+
+breai
+

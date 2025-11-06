@@ -1,0 +1,37 @@
+# Programa para calcular k = x^y (x elevado a y)
+# x será lido da primeira posição livre da memória
+# y será lido da segunda posição livre da memória
+# k será armazenado na terceira posição livre da memória
+
+.data
+x: .word 2       # Defina valores pequenos para x
+y: .word 3       # Defina valores pequenos para y
+k: .word 0       # Terceira posição livre da memória para armazenar k
+
+.text
+.globl main
+
+main:
+    # Carregar os valores de x e y da memória
+    lw $t0, x       # Carregar x para $t0
+    lw $t1, y       # Carregar y para $t1
+    
+    # Inicializar k com 1 (já que qualquer número elevado a 0 é 1)
+    li $t2, 1       # $t2 (k) = 1
+    
+    # Verificar se y é zero, caso sim, k já está 1 e podemos pular a exponenciação
+    beq $t1, $zero, store_result
+    
+    # Loop de exponenciação através de multiplicações repetidas
+exponentiation:
+    mul $t2, $t2, $t0   # k *= x
+    subi $t1, $t1, 1    # y -= 1
+    bnez $t1, exponentiation  # Se y não for zero, continue multiplicando
+    
+# Armazenar o resultado k na memória
+store_result:
+    sw $t2, k           # Armazenar o valor de k na memória
+    
+    # Encerrar o programa
+    li $v0, 10          # Syscall para encerrar o programa
+    syscall             # Chama a syscall para terminar a execução

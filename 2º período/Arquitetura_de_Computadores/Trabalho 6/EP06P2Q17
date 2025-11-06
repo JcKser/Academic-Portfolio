@@ -1,0 +1,41 @@
+# Programa para calcular k = x * y usando somas
+# x será lido da primeira posição livre da memória
+# y será lido da segunda posição livre da memória
+# k será armazenado na terceira posição livre da memória
+# Programa para calcular k = x * y usando somas
+# x será lido da primeira posição livre da memória
+# y será lido da segunda posição livre da memória
+# k será armazenado na terceira posição livre da memória
+
+.data
+x: .word 0       # primeira posição livre da memória
+y: .word 0       # segunda posição livre da memória
+k: .word 0       # terceira posição livre da memória
+
+.text
+.globl main
+
+main:
+    # Carregar os valores de x e y da memória
+    lw $t0, x       # Carregar x para $t0
+    lw $t1, y       # Carregar y para $t1
+    
+    # Inicializar k em zero
+    li $t2, 0       # $t2 (k) = 0
+    
+    # Verificar se y é zero, caso sim, k já está zero e podemos pular a multiplicação
+    beq $t1, $zero, store_result
+    
+    # Loop de multiplicação através de somas
+multiply:
+    add $t2, $t2, $t0   # k += x
+    subi $t1, $t1, 1    # y -= 1
+    bnez $t1, multiply  # Se y não for zero, continue somando
+    
+# Armazenar o resultado k na memória
+store_result:
+    sw $t2, k           # Armazenar o valor de k na memória
+    
+    # Encerrar o programa
+    li $v0, 10          # Syscall para encerrar o programa
+    syscall             # Chama a syscall para terminar a execução
