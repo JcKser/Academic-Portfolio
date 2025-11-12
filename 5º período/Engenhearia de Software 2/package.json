@@ -1,0 +1,14 @@
+{
+  "name": "engenhearia-de-software-2",
+  "version": "1.0.0",
+  "description": "Projeto de exemplo para testes automatizados",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
