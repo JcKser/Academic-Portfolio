@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca Digital — Demo</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- estilos (seu arquivo CSS principal) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="app-grid">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand-row">
+        <img src="/frontend/public/imagens/logo.png" alt="DigitalTale Logo" class="brand-logo" />
+        <span class="brand-name" aria-hidden="true">
+          <span class="digi">Digi</span><span class="tale">Tale</span>
+        </span>
+      </div>
+
+      <nav id="sideNav" class="side-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#" data-key="discover">
+          <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="nav-label">Descubra</span>
+        </a>
+        <a class="nav-item" href="#" data-key="categories">
+          <span class="nav-icon"><i class="fa-solid fa-book-open"></i></span>
+          <span class="nav-label">Categorias</span>
+        </a>
+        <a class="nav-item" href="#" data-key="audiobooks">
+          <span class="nav-icon"><i class="fa-solid fa-headphones"></i></span>
+          <span class="nav-label">Audio Books</span>
+        </a>
+        <a class="nav-item" href="#" data-key="favorites">
+          <span class="nav-icon"><i class="fa-regular fa-heart"></i></span>
+          <span class="nav-label">Favoritos</span>
+        </a>
+        <a class="nav-item" href="#" data-key="support">
+          <span class="nav-icon"><i class="fa-regular fa-life-ring"></i></span>
+          <span class="nav-label">Suporte</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer" id="sidebarFooter" aria-hidden="false">
+        <button id="loginBtn" class="sidebar-btn btn-login" type="button" aria-label="Login">
+          <i class="fa-regular fa-user" aria-hidden="true"></i>
+          <span>Login</span>
+        </button>
+
+        <button id="registerBtn" class="sidebar-btn btn-register" type="button" aria-label="Register">
+          <i class="fa-regular fa-user-plus" aria-hidden="true"></i>
+          <span>Register</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN-COLUMN -->
+    <div class="main-column" id="mainColumn">
+
+      <!-- TOP NAV -->
+      <header class="topnav" role="banner" id="topnav">
+        <div class="left">
+          <div class="searchbar">
+            <input id="searchInput" placeholder="Procure seus livros favoritos..." aria-label="Buscar livros" />
+          </div>
+        </div>
+
+        <div class="right">
+          <button class="notif-btn" aria-label="Notifications" id="notifBtn" title="Notificações">
+            <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            <span class="notif-badge" id="notifBadge">3</span>
+          </button>
+
+          <div class="profile" id="profileArea" title="Perfil">
+            <div class="avatar" id="avatarBtn">J</div>
+            <div class="name">Júlio</div>
+            <div class="user-dropdown" id="userDropdown" role="menu" aria-hidden="true"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content" role="main" id="mainContent">
+
+        <!-- ====================== RECOMMENDED ====================== -->
+        <section class="box recommended-box" aria-labelledby="rec-title">
+          <div class="box-header">
+            <h3 id="rec-title">Recomendados</h3>
+            <button id="seeAllBtn" class="link-btn" aria-controls="carousel" aria-expanded="false">See All</button>
+          </div>
+
+          <div id="carousel" class="carousel" aria-label="Recommended books" role="list"></div>
+          <div class="pagination-controls" id="paginationContainer" aria-hidden="true"></div>
+        </section>
+
+        <!-- ======================== CATEGORIES ======================== -->
+        <section class="box categories-box" aria-labelledby="cat-title">
+          <div class="box-header categories-header" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 id="cat-title" style="margin:0 0 4px 0;">Categories</h3>
+
+              <!-- Apenas UM container para as pills (renderizado pelo JS) -->
+              <div id="categoryList" class="category-list" role="tablist" aria-label="Categories"></div>
+            </div>
+
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <button id="advancedFilterBtn" class="icon-filter-btn" aria-label="Advanced filters" title="Advanced filters">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+
+              <button id="categorySeeAllBtn" class="link-btn" aria-controls="categoryCarousel" aria-expanded="false">Read All</button>
+            </div>
+          </div>
+
+          <div id="categoryCarousel" class="carousel category-carousel" aria-label="Category books" role="list"></div>
+          <div id="categoryPaginationContainer" class="pagination-controls" aria-hidden="true"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- SIDE PANEL -->
+  <aside id="sidepanel" class="sidepanel" aria-hidden="true">
+    <button id="closePanel" class="close-btn" aria-label="Fechar">✕</button>
+    <div id="sideCover" class="cover" style="height:120px;border-radius:8px;background:rgba(255,255,255,0.06);"></div>
+
+    <div class="side-body">
+      <h4 id="sideTitle">Escolha um livro</h4>
+      <div id="sideAuthor" class="muted small"></div>
+      <p id="sideDesc" class="desc">Clique em um livro para ver detalhes aqui.</p>
+
+      <div class="meta">
+        <div class="chip"><strong id="sidePages">—</strong><div class="small">pages</div></div>
+        <div class="chip"><strong id="sideRating">—</strong><div class="small">rating</div></div>
+        <div class="chip"><strong id="sideAvailability">—</strong><div class="small">available</div></div>
+      </div>
+
+      <div class="actions">
+        <button id="btnReserve" class="page-btn">Reserve</button>
+        <button id="btnLoan" class="page-btn active">Read now</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Advanced Filters Popover -->
+  <div id="advancedFilterModal" class="filter-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="filter-modal-inner">
+      <header class="filter-modal-header">
+        <h4>Advanced Filters</h4>
+        <button id="closeAdvancedFilter" class="close-btn" aria-label="Close">✕</button>
+      </header>
+
+      <div class="filter-body">
+        <div class="filter-row">
+          <label for="filterGenre">Genre</label>
+          <select id="filterGenre">
+            <option value="">Any</option>
+            <option>Ficção</option>
+            <option>Ciência</option>
+            <option>Programação</option>
+            <option>Negócios</option>
+            <option>Finanças</option>
+            <option>Educação</option>
+          </select>
+        </div>
+
+        <div class="filter-row">
+          <label for="filterLang">Language</label>
+          <select id="filterLang">
+            <option value="">Any</option>
+            <option>Português</option>
+            <option>Inglês</option>
+            <option>Espanhol</option>
+          </select>
+        </div>
+
+        <div class="filter-row">
+          <label for="filterYearFrom">Year (from)</label>
+          <input id="filterYearFrom" type="number" placeholder="2000" />
+        </div>
+
+        <div class="filter-row">
+          <label for="filterRating">Rating ≥</label>
+          <input id="filterRating" type="number" min="0" max="5" step="0.1" placeholder="4.0" />
+        </div>
+
+        <div class="filter-row">
+          <label><input id="filterAvailable" type="checkbox" /> Only available</label>
+        </div>
+      </div>
+
+      <footer class="filter-modal-footer">
+        <button id="applyFiltersBtn" class="page-btn">Apply</button>
+        <button id="clearFiltersBtn" class="page-btn secondary">Clear</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="/frontend/public/js/app.js" defer></script>
+</body>
+</html>
