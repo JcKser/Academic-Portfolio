@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DigiTale — Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS local (arquivo login.css está na mesma pasta que este login.html) -->
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+  <div class="login-wrapper">
+
+    <!-- LEFT -->
+    <div class="login-left">
+      <div class="brand">
+        <!-- caminho relativo para /public/imagens/logo.png -->
+        <a href="/frontend/public/index.html"><img src="/frontend/public/imagens/logo.png" alt="Logo Biblioteca Digital" class="brand-logo" /></a>
+        <h1 class="brand-name"><span class="digi">Digi</span><span class="tale">Tale</span></h1>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="login-right">
+      <div class="form-box">
+        <h2>Entrar</h2>
+
+        <form>
+          <!-- Email -->
+          <div class="input-group">
+            <span class="icon"><i class="fa-regular fa-envelope"></i></span>
+            <input type="email" placeholder="Email" required>
+          </div>
+
+          <!-- Senha -->
+          <div class="input-group">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" placeholder="Senha" required>
+          </div>
+
+          <!-- Botão -->
+          <button class="btn-login" type="submit">Entrar</button>
+
+          <p class="register-text">
+            Não tem uma conta?
+            <a href="/frontend/public/outras_telas/registrar/registro.html">Registrar</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+<script src="login.js"></script>
+</body>
+</html>

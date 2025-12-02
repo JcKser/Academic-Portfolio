@@ -1,0 +1,147 @@
+/* ===== PERFIL - CENTRALIZAÇÃO TOTAL E PERFEITA ===== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter, system-ui, sans-serif}
+
+/* WRAPPER PRINCIPAL */
+.perfil-wrapper {
+  /* O PULO DO GATO PARA NÃO TER SCROLL:
+     100vh (tela toda) MENOS 80px (que é a soma do padding de 40px em cima e 40px embaixo do .main) */
+  min-height: calc(100vh - 80px);
+  
+  width: 100%;
+  
+  /* Centralização Flexbox */
+  display: flex;
+  justify-content: center; /* Centro Horizontal */
+  align-items: center;     /* Centro Vertical */
+  
+  /* Opcional: Gradiente de fundo */
+  background: linear-gradient(180deg, #051223, #0b2442);
+  border-radius: 20px;
+}
+
+/* CONTAINER DO CONTEÚDO */
+.profile-shell {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: #fff;
+  /* Garante que o conteúdo não cole nas bordas em telas pequenas */
+  padding: 20px; 
+}
+
+/* TÍTULO + SUBTÍTULO */
+.profile-head { text-align: center; } 
+
+.profile-head h1 {
+  margin: 0; font-size: 32px; font-weight: 800; color: white;
+}
+.profile-head .muted { color: #cbd5e1; }
+
+/* ===== AVATAR ===== */
+.avatar-top { display: flex; justify-content: center; margin-top: 10px; }
+
+.avatar-circle {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,0.15);
+  background: linear-gradient(180deg, #ffffff, #dee7f7);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.avatar-initial {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; font-weight: 800; color: #0f172a;
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+  transition: opacity .15s;
+}
+
+.avatar-circle.has-image .avatar-initial { opacity: 0; visibility: hidden; }
+.avatar-circle.no-image img { opacity: 0; visibility: hidden; }
+
+.avatar-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 0;
+  color: white; font-size: 12px; text-align: center;
+  background: rgba(0,0,0,0.45); opacity: 0; transition: .15s;
+}
+.avatar-circle:hover .avatar-overlay { opacity: 1; }
+
+.file-input { display: none; }
+
+/* ===== FORMULÁRIO ===== */
+.profile-card {
+  padding: 10px;
+  border-radius: 20px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.field { display: flex; flex-direction: column; margin-bottom: 18px; }
+
+.field-label {
+  font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 6px;
+}
+
+.input {
+  padding: 12px 16px; font-size: 15px; border-radius: 12px;
+  border: 1px solid #d0d7e3; background: white; outline: none; width: 100%;
+}
+.input:focus {
+  border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,.15);
+}
+
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
+}
+
+.helper { font-size: 12px; color: #a5b4c3; margin-top: 4px; }
+
+/* ===== BOTÕES ===== */
+.form-actions {
+  margin-top: 10px; display: flex; justify-content: center; gap: 16px;
+}
+
+.btn {
+  padding: 12px 30px; border-radius: 10px; cursor: pointer;
+  font-weight: 700; border: none; font-size: 14px;
+}
+.btn.primary { background: #2563eb; color: white; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+.btn.ghost { background: transparent; border: 1px solid #cbd5e1; color: white; }
+
+/* RESPONSIVO */
+@media(max-width: 780px) {
+  .form-grid { grid-template-columns: 1fr; gap: 15px; }
+  /* Em telas pequenas, permitimos que cresça e tenha scroll se necessário */
+  .perfil-wrapper { height: auto; min-height: calc(100vh - 80px); align-items: flex-start; }
+}
+
+/* ===== RESETS FORÇADOS PARA SPA ===== */
+#dynamicView,
+#dynamicView .perfil-wrapper,
+#dynamicView .profile-shell,
+.perfil-wrapper,
+.profile-shell,
+.profile-card,
+.view,
+.view.active {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Garante a cor dos textos */
+#dynamicView .field-label,
+#dynamicView .profile-head h1,
+#dynamicView .profile-head .muted {
+  color: #cbd5e1 !important;
+}

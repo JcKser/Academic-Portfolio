@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Histórico — Empréstimos & Reservas</title>
+
+  <link rel="stylesheet" href="./historico.css">
+</head>
+<body>
+  <div class="historico-page">
+    <main class="history-shell">
+
+      <header class="history-head">
+        <div>
+          <h1>Histórico — Empréstimos & Reservas</h1>
+          <p class="muted">Veja seu histórico completo de empréstimos e reservas.</p>
+        </div>
+
+        <div class="controls">
+          <select id="filterType" aria-label="Filtrar tipo">
+            <option value="all">Todos</option>
+            <option value="loans">Empréstimos</option>
+            <option value="reservations">Reservas</option>
+            <option value="read">Lidos</option>
+            <option value="overdue">Atrasados</option>
+          </select>
+          <button id="btnRefresh" class="btn">Atualizar</button>
+        </div>
+      </header>
+
+      <section class="history-panel card" role="region" aria-label="Painel histórico">
+        
+        <!-- CONTAINER COM SCROLL INTERNO -->
+        <div class="table-wrapper">
+          <table class="history-table" id="historyTable" aria-label="Tabela de histórico">
+            <thead>
+              <tr>
+                <th>Livro</th>
+                <th>Usuário</th>
+                <th>Gênero</th>
+                <th>Data Empréstimo</th>
+                <th>Data Devolução</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- linhas injetadas pelo historico.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAGINAÇÃO FIXA NO RODAPÉ -->
+        <nav class="pagination-bar" id="historyPagination" aria-label="Paginação">
+          <div class="pagination-left">
+            <button id="prevPage" class="page-btn" aria-label="Página anterior">‹</button>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:center;flex:1">
+            <span id="pageIndicator" class="page-info" aria-live="polite">Página 1</span>
+          </div>
+
+          <div class="pagination-right">
+            <button id="nextPage" class="page-btn" aria-label="Próxima página">›</button>
+          </div>
+        </nav>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="./historico.js" defer></script>
+</body>
+</html>

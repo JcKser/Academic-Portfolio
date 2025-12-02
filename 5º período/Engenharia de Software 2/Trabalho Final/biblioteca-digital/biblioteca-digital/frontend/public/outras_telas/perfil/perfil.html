@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="../perfil/perfil.css">
+
+<div data-init="initPerfil" class="perfil-wrapper" aria-live="polite">
+
+  <div class="profile-shell">
+
+    <div class="profile-head">
+      <div>
+        <h1>Editar perfil</h1>
+        <div class="muted">Atualize suas informações pessoais abaixo.</div>
+      </div>
+      <div class="muted"><small>Última atualização: <span id="profileUpdatedAt">—</span></small></div>
+    </div>
+
+    <!-- Avatar -->
+    <div class="avatar-top">
+      <div class="avatar-circle no-image" role="button" tabindex="0" aria-label="Alterar foto de perfil">
+        <img id="avatarPreview"
+             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+        <div id="avatarInitial" class="avatar-initial"></div>
+        <div class="avatar-overlay">Mudar Foto</div>
+      </div>
+    </div>
+
+    <input id="avatarInput" class="file-input" type="file" accept="image/*">
+
+    <!-- FORM -->
+    <div class="profile-card">
+      <form id="profileForm" novalidate>
+
+        <div class="form-grid">
+
+          <!-- esquerda -->
+          <div>
+            <div class="field">
+              <div class="field-label">Nome</div>
+              <input id="profileName" class="input" placeholder="Seu nome completo">
+            </div>
+
+            <div class="field">
+              <div class="field-label">E-mail</div>
+              <input id="profileEmail" type="email" class="input" placeholder="seu@exemplo.com">
+            </div>
+
+            <div class="field">
+              <div class="field-label">Nova senha</div>
+              <input id="profilePass" type="password" class="input"
+                     placeholder="Deixe em branco para manter a atual">
+            </div>
+
+            <div class="field">
+              <div class="field-label">Preferências</div>
+
+              <label class="checkbox">
+                <input type="checkbox" name="pref_news"> Receber novidades por e-mail
+              </label>
+
+              <label class="checkbox">
+                <input type="checkbox" name="pref_messages"> Notificações por app
+              </label>
+            </div>
+          </div>
+
+          <!-- direita -->
+          <div>
+            <div class="field">
+              <div class="field-label">Sobrenome</div>
+              <input id="profileSurname" class="input" placeholder="Seu sobrenome">
+            </div>
+
+            <div class="field">
+              <div class="field-label">Data de nascimento</div>
+              <input id="profileDob" type="date" class="input">
+            </div>
+
+            <div class="field">
+              <div class="field-label">Confirmar senha</div>
+              <input id="profilePassConfirm" type="password" class="input"
+                     placeholder="Confirme sua senha">
+              <div class="helper">Preencha apenas se for alterar a senha.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button id="saveProfileBtn" class="btn primary" type="submit">Salvar alterações</button>
+          <button id="cancelProfileBtn" class="btn ghost" type="button">Cancelar</button>
+          <button id="removeAvatarBtn" class="btn ghost" type="button">Remover avatar</button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

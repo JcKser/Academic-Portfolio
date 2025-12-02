@@ -1,0 +1,132 @@
+/* historico.css — layout sem scroll interno + paginação numerada */
+
+/* Reset mínimo */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* sem scroll global */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.historico-page * { box-sizing: border-box; }
+
+.historico-page {
+  height: 90vh; /* você disse 90vh — ajuste aqui se quiser 100vh */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #e6eef8;
+  overflow: hidden;
+}
+
+.history-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 10px;
+}
+
+/* Cabeçalho */
+.historico-page .history-head {
+  flex: 0 0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom: 20px;
+  padding: 10px 5px 0 5px;
+}
+.historico-page .history-head h1 { margin:0; font-size:26px; font-weight:800; color:#fff; }
+.historico-page .history-head .muted { margin:4px 0 0 0; color:#94a3b8; font-size:13px; }
+
+/* Controles */
+.historico-page .controls { display:flex; gap:12px; align-items:center; }
+.historico-page select {
+  padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);
+  background: rgba(15,23,42,0.6); color:#e6eef8; outline:none; cursor:pointer;
+}
+.historico-page select option { background:#fff; color:#000 !important; }
+.historico-page .btn { padding:8px 20px; border-radius:8px; background: linear-gradient(180deg,#1e293b,#0f172a); color:#fff; border:1px solid rgba(255,255,255,0.1); }
+
+/* Card */
+.historico-page .card {
+  flex:1 1 auto; min-height:0; display:flex; flex-direction:column;
+  background: rgba(15,23,42,0.5); border:1px solid rgba(255,255,255,0.05);
+  border-radius:16px 16px 0 0; box-shadow:0 -4px 20px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+/* TABLE WRAPPER — agora sem scroll interno */
+.historico-page .table-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden; /* NÃO permitir scroll interno */
+  padding: 0; /* sem padding para thead alinhar */
+}
+
+/* Tabela */
+.historico-page .history-table { width:100%; border-collapse: collapse; table-layout:auto; }
+
+/* HEAD sticky — ocupa espaço mas o JS desconta its height */
+.historico-page .history-table thead th {
+  position: sticky; top: 0; z-index: 10; background:#09152b;
+  padding: 28px 24px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase;
+  color:#64748b; letter-spacing:0.8px; border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+/* Linhas */
+.historico-page .history-table tbody td {
+  padding: 28px 24px;
+  font-size:14px; color:#e2e8f0; font-weight:500;
+  border-bottom:1px solid rgba(255,255,255,0.02);
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+/* Hover sem pulo */
+.historico-page .history-table tbody tr:hover td { background: rgba(255,255,255,0.02); color:#fff; }
+
+/* Badges */
+.historico-page .badge { display:inline-flex; align-items:center; justify-content:center; padding:6px 14px; border-radius:99px; font-weight:700; font-size:11px; }
+.historico-page .badge.overdue { background:#451a1a; color:#fca5a5; border:1px solid rgba(248,113,113,0.2); }
+.historico-page .badge.onloan { background:#172554; color:#93c5fd; border:1px solid rgba(96,165,250,0.2); }
+.historico-page .badge.done { background:#064e3b; color:#6ee7b7; border:1px solid rgba(52,211,153,0.2); }
+
+/* PAGINAÇÃO (Fixo no fundo do card) */
+.historico-page .pagination-bar {
+  flex: 0 0 auto;
+  padding: 12px 24px;
+  background: rgba(13,20,36,0.95);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+/* Controles de paginação numéricos (bolinhas/links) */
+.historico-page .pagination-pages {
+  display:flex; gap:8px; align-items:center;
+}
+.historico-page .pagination-pages button {
+  min-width:36px; height:36px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02); color:#94a3b8; cursor:pointer; padding:0 10px;
+}
+.historico-page .pagination-pages button.active { background: rgba(99,102,241,0.14); color:#fff; border-color: rgba(99,102,241,0.3); }
+
+/* Botões anteriores/próximo */
+.historico-page .page-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); color:#94a3b8; }
+.historico-page .page-btn:hover { background: rgba(255,255,255,0.1); color:#fff; }
+
+/* Info da página */
+.historico-page .page-info { font-size:13px; color:#64748b; font-weight:500; }
+
+/* Mobile */
+@media (max-width:900px) {
+  html, body { overflow: auto; height: auto; }
+  .historico-page { height: auto; }
+  .history-shell { height:auto; padding:10px; }
+  .historico-page .card { height:auto; flex:none; border-radius:12px; }
+  .historico-page .table-wrapper { overflow-x:auto; }
+}
+
+/* fim do CSS */

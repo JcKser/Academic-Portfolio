@@ -57,7 +57,7 @@
         </button>
 
         <button id="registerBtn" class="sidebar-btn btn-register" type="button" aria-label="Register">
-          <i class="fa-regular fa-user-plus" aria-hidden="true"></i>
+          <i class="fa-solid fa-pencil" aria-hidden="true"></i>
           <span>Register</span>
         </button>
       </div>
@@ -69,20 +69,26 @@
       <!-- TOP NAV -->
       <header class="topnav" role="banner" id="topnav">
         <div class="left">
-          <div class="searchbar">
+          <div class="searchbar" role="search" aria-label="Barra de busca">
+            <span class="search-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
             <input id="searchInput" placeholder="Procure seus livros favoritos..." aria-label="Buscar livros" />
           </div>
         </div>
 
-        <div class="right">
-          <button class="notif-btn" aria-label="Notifications" id="notifBtn" title="Notificações">
-            <i class="fa-regular fa-bell" aria-hidden="true"></i>
-            <span class="notif-badge" id="notifBadge">3</span>
-          </button>
+        <div class="right" style="display:flex;align-items:center;gap:12px;position:relative;">
+          <!-- Notification wrapper (button + panel) -->
+          <div class="notif-wrapper" aria-live="polite">
+            <button id="notifBtn" class="notif-btn" aria-haspopup="true" aria-expanded="false" aria-label="Notificações" title="Notificações">
+              <span class="bell-box" aria-hidden="true"><i class="fa-regular fa-bell"></i></span>
+              <span id="notifBadge" class="notif-badge" aria-hidden="true">3</span>
+            </button>
+            <!-- Panel injected by app.js (classe .notif-panel) -->
+          </div>
 
           <div class="profile" id="profileArea" title="Perfil">
             <div class="avatar" id="avatarBtn">J</div>
             <div class="name">Júlio</div>
+            <!-- caret é injetado pelo JS se necessário -->
             <div class="user-dropdown" id="userDropdown" role="menu" aria-hidden="true"></div>
           </div>
         </div>
@@ -209,6 +215,7 @@
     </div>
   </div>
 
+  <!-- seu app.js -->
   <script src="/frontend/public/js/app.js" defer></script>
 </body>
 </html>

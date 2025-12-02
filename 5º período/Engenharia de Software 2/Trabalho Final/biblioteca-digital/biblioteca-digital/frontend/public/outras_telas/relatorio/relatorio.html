@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel do Usuário — Relatórios</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="relatorio.css">
+</head>
+<body>
+
+  <div class="layout">
+    
+    <aside class="sidebar">
+      
+      <div class="brand">
+        <a href="/frontend/public/index.html" style="display: flex;">
+            <img src="/frontend/public/imagens/logo.png" alt="Logo Biblioteca Digital" class="brand-logo" />
+        </a>
+        <div class="brand-name">
+            <span class="digi">Digi</span><span class="tale">Tale</span>
+        </div>
+      </div>
+
+      <nav class="nav" id="spaNav">
+        <!-- data-route para o router SPA -->
+        <a href="#" data-route="perfil">Perfil</a>
+        <a href="#" data-route="painel" class="active">Painel</a>
+        <a href="#" data-route="emprestimos">Meus Empréstimos</a>
+        <a href="#" data-route="reservas">Reservas</a>
+        <a href="#" data-route="suporte">Suporte</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        </div>
+    </aside>
+
+    <main class="main">
+      <!-- mainContainer é onde as views aparecem -->
+      <div id="mainContainer">
+
+        <!-- VIEW: Painel (conteúdo original do seu index) -->
+        <section id="view-painel" class="view active" data-view="painel">
+          <div class="header">
+            <div>
+              <div class="title">Relatórios pessoais</div>
+              <div class="sub">Resumo da sua atividade na biblioteca</div>
+            </div>
+
+            <div class="actions">
+              <div class="pill" id="readingStreak">Sequência: 5 dias</div>
+              <button class="btn ghost" id="exportPdfBtn">Exportar PDF</button>
+              <button class="btn primary" id="refreshBtn">Atualizar</button>
+            </div>
+          </div>
+
+          <section class="grid">
+            <div class="stat">
+              <div class="label">Empréstimos atuais</div>
+              <div class="value" id="statLoans">-</div>
+            </div>
+
+            <div class="stat">
+              <div class="label">A vencer em 7 dias</div>
+              <div class="value" id="statDueSoon">-</div>
+            </div>
+
+            <div class="stat">
+              <div class="label">Reservas ativas</div>
+              <div class="value" id="statReserves">-</div>
+            </div>
+
+            <div class="stat">
+              <div class="label">Livros lidos este ano</div>
+              <div class="value" id="statRead">-</div>
+            </div>
+          </section>
+
+          <section class="chart-card">
+            <h3>Livros lidos por mês</h3>
+            <canvas id="readingChart"></canvas>
+          </section>
+
+          <div class="flex">
+            
+            <div class="panel col">
+              <h3>Top livros emprestados</h3>
+              <table>
+                <thead>
+                  <tr><th>Livro</th><th style="text-align: right;">Vezes</th></tr>
+                </thead>
+                <tbody id="tableTopBooks"></tbody>
+              </table>
+            </div>
+
+            <div class="panel col">
+              <h3>Devoluções próximas</h3>
+              <table>
+                <thead>
+                  <tr><th>Livro</th><th style="text-align: right;">Data</th></tr>
+                </thead>
+                <tbody id="tableDueSoon"></tbody>
+              </table>
+            </div>
+
+          </div>
+        </section>
+        <!-- /view-painel -->
+
+        <!-- dynamicView será inserida aqui (quando carregar partials como perfil) -->
+      </div>
+    </main>
+
+  </div><script>
+  // ajuste se o backend roda em outra porta
+  window.BACKEND_URL = 'http://127.0.0.1:8080';
+  // endpoint exato de histórico (prioritário)
+  window.HISTORY_ENDPOINT = '/api/history';
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/frontend/public/outras_telas/relatorio/relatorio.js"></script>
+</body>
+</html>

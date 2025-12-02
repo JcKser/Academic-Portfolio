@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Poppins, Arial, sans-serif;
+  background: #f6f8fc;
+  height: 100vh;
+}
+
+/* GRID: metade azul, metade branco */
+.login-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+/* LEFT SIDE */
+.login-left {
+  background: #0A1A3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.brand {
+  color: #fff;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brand-name {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.digi {
+  font-weight: 900;
+}
+
+.tale {
+  font-weight: 700;
+  color: #4da3ff;
+}
+
+/* RIGHT SIDE */
+.login-right {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box {
+  width: 360px;
+}
+
+.form-box h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0A1A3A;
+  margin-bottom: 30px;
+}
+
+/* INPUTS */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #f1f3f8;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  gap: 10px;
+}
+
+.input-group .icon i {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  outline: none;
+  color: #0A1A3A;
+}
+
+/* BOTÃO */
+.btn-login {
+  width: 100%;
+  padding: 14px 0;
+  background: linear-gradient(180deg,#0b63ff,#0a53d6);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform .15s;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+}
+
+/* TEXTO INFERIOR */
+.register-text {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #0A1A3A;
+}
+
+.register-text a {
+  color: #0b63ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+register-text a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .login-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .login-left {
+    display: none;
+  }
+}
+.brand-logo {
+  display: block;
+  width: 120px;      /* ajuste conforme quiser */
+  height: auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* se estiver sobre fundo escuro e logo for escura, força contraste (opcional) */
+.login-left .brand-logo {
+  filter: none; /* ou brightness(0) invert(1) caso queira inverter */
+}
+
+/* garantir que o container mostra a imagem */
+.brand, .brand-left-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
