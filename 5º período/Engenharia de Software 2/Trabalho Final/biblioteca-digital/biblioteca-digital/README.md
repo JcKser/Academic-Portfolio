@@ -8,7 +8,7 @@ Confira abaixo a demonstração do sistema funcionando e a apresentação oficia
 
 | 📱 Demonstração do Sistema | 🎤 Apresentação do Projeto |
 | :---: | :---: |
-| [![Demo de DigiTale](https://img.youtube.com/vi/_BA_gz6C1Fc/0.jpg)](https://www.youtube.com/watch?v=_BA_gz6C1Fc) | [![Apresentação DigiTale](https://img.youtube.com/vi/onhJrS40Qm4/0.jpg)](https://www.youtube.com/watch?v=onhJrS40Qm4) |
+| [![Demo de DigiTale](https://img.youtube.com/vi/_BA_gz6C1Fc/0.jpg)]([https://www.youtube.com/watch?v=_BA_gz6C1Fc](https://youtu.be/SsAu7LIHFBM)) | [![Apresentação DigiTale](https://img.youtube.com/vi/onhJrS40Qm4/0.jpg)](https://www.youtube.com/watch?v=onhJrS40Qm4) |
 
 ---
 
