@@ -1,26 +1,43 @@
-# Compiladores — Trabalho Prático (linguagem COOL)
+# Compiladores — Trabalho Prático N.01 (linguagem COOL)
 
-Entrega preliminar do trabalho prático, **individual**.
+Entrega preliminar do trabalho prático, **individual**. Interpretador de uma
+máquina de pilha escrito em Cool.
 
-> ⚠️ **Este README ainda NÃO está preenchido.** O enunciado exige análises
-> *verdadeiras e completas* do uso da linguagem — os campos abaixo são um
-> esqueleto e devem ser escritos por mim, com base no que eu de fato implementei.
-> README não preenchido = pontuação zerada.
+## Status
 
-## Requisitos obrigatórios da entrega
+- [x] O código implementado compila e executa corretamente.
+- [x] README do PA1 preenchido com as respostas das três perguntas.
 
-- [ ] O código implementado compila e executa corretamente.
-- [ ] Este README preenchido (português ou inglês) com análises verdadeiras e completas.
+Verificado em 18/08/2026: `make test` produz saída **byte a byte idêntica** ao
+gabarito impresso no enunciado, e o exemplo interativo do PDF (`1 + 2 s d e e d x`)
+também reproduz o resultado esperado.
 
 ## Ambiente
 
-O compilador de COOL fornecido na disciplina roda em **Linux x86** (WSL funciona).
-Macs com arquitetura ARM não conseguem executar o compilador, nem em VM;
-a alternativa nesse caso é uma instância gratuita de nuvem (AWS, Azure, GCP).
+O compilador da disciplina roda em **Linux x86**. Como o WSL desta máquina está
+com o serviço desativado, o trabalho foi feito em um **GitHub Codespace**
+(Ubuntu 24.04, x86_64) — que é a "instância gratuita de nuvem" sugerida no
+enunciado.
 
-- Sistema usado: _(preencher)_
-- Como compilar: _(preencher)_
-- Como executar: _(preencher)_
+```bash
+# dependências
+sudo apt-get install -y g++ make csh sharutils flex bison
+
+# instalação do material da disciplina
+sudo mkdir -p /var/tmp/cool && sudo chown $(whoami) /var/tmp/cool
+cp x86_64.u /var/tmp/cool/ && cd /var/tmp/cool
+uudecode x86_64.u && tar xpf x86_64.tar.gz && make install
+
+# geração e execução do PA1
+mkdir -p ~/PA1 && cd ~/PA1
+make -f /var/tmp/cool/assignments/PA1/Makefile
+cp <caminho>/stack.cl stack.cl
+make test
+
+# empacotamento da entrega
+cd .. && tar cvzf PA1.tar.gz PA1
+uuencode PA1.tar.gz PA1.tar.gz > PA1.u && rm PA1.tar.gz
+```
 
 ## Estrutura
 
@@ -31,23 +48,28 @@ Compiladores/
 │   ├── cool-tour.pdf
 │   ├── cool-paper.pdf
 │   └── cool-runtime.pdf
-├── x86_64.u       # runtime / trap handler
+├── x86_64.u       # material da disciplina (compilador, spim, exemplos)
+├── PA1/
+│   ├── stack.cl      # a implementação
+│   └── respostas.txt # respostas anexadas ao README do PA1
 └── README.md
 ```
 
-Faltam ainda no repositório: `00-configuracoes-iniciais.pdf`, `01-tp-cool-extra.pdf`
-e o código-base do compilador fornecido pela disciplina.
+## Desenho da solução
 
-## Análise do uso da linguagem
+| Classe | Papel |
+|---|---|
+| `StackCommand` | raiz da hierarquia; operações genéricas `toStr()`, `value()`, `eval(st)` |
+| `IntCommand` | inteiro empilhado; herda o `eval` padrão (pilha inalterada) |
+| `PlusCommand` | desempilha `+`, soma os dois inteiros seguintes, empilha o resultado |
+| `SwapCommand` | desempilha `s`, troca os dois seguintes de lugar |
+| `StackNode` | célula da lista encadeada (`void` = fim da lista) |
+| `Stack` | a pilha; herda `IO` para se imprimir no comando `d` |
+| `Main` | laço de leitura, prompt `>`, despacho dos comandos |
 
-_(preencher — o enunciado pede análise verdadeira e completa)_
+O comando `e` não faz análise de casos: `Main` pergunta ao elemento do topo com
+`stack.peek().eval(stack)` e o despacho dinâmico escolhe o comportamento.
 
-### O que foi implementado
-
-### Recursos da linguagem utilizados
-
-### Dificuldades encontradas
-
-### Decisões de projeto
-
-### Limitações conhecidas
+Único desvio em relação ao enunciado: string vazia (EOF) também encerra o laço,
+além do `x`. Sem isso, rodar com um arquivo de entrada sem `x` no final vira
+laço infinito empilhando zeros.

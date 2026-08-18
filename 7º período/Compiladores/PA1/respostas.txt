@@ -1,0 +1,46 @@
+
+Respostas
+---------
+
+1. Describe your implementation of the stack machine in a single short
+   paragraph.
+
+   A maquina de pilha foi implementada de forma orientada a objetos em torno
+   da classe StackCommand, que declara as operacoes genericas toStr(), value()
+   e eval(). Cada tipo de item armazenavel e uma subclasse: IntCommand guarda
+   um inteiro, PlusCommand representa o simbolo '+' e SwapCommand o simbolo
+   's'. A pilha propriamente dita e a classe Stack, sustentada por uma lista
+   encadeada de StackNode em que uma referencia void marca o fim (pilha
+   vazia); Stack herda de IO para conseguir imprimir a si mesma no comando
+   'd'. O comando 'e' nao faz analise de casos: Main apenas pergunta ao
+   elemento do topo, com stack.peek().eval(stack), e o despacho dinamico
+   escolhe o comportamento certo -- PlusCommand se desempilha e soma os dois
+   inteiros seguintes, SwapCommand se desempilha e troca os dois seguintes de
+   lugar, e IntCommand simplesmente herda o eval padrao, que deixa a pilha
+   inalterada. A conversao entre string e inteiro usa a classe A2I de atoi.cl.
+
+2. List 3 things that you like about the Cool programming language.
+
+   - O despacho dinamico deixou o interpretador quase sem condicionais: o
+     comando 'e', que no enunciado e uma tabela de tres casos, virou uma unica
+     chamada de metodo, e cada caso mora na subclasse a que pertence.
+   - SELF_TYPE. Ele permite que um metodo init() devolva o proprio tipo do
+     objeto, o que torna o idioma (new IntCommand).init(v) natural e sem
+     conversao de tipo.
+   - Tudo e expressao: if, while e blocos tem valor, entao o codigo fica
+     compacto e sem a separacao artificial entre comando e expressao.
+
+3. List 3 things you DON'T like about Cool.
+
+   - Heranca simples e sem interfaces. Stack precisou herdar de IO so para
+     poder imprimir; nao existe forma de compor comportamentos, entao a
+     escolha do que herdar acaba sendo decidida por detalhes de implementacao
+     e nao pelo modelo do problema.
+   - A biblioteca padrao e minima. Nao ha lista, vetor nem tabela, entao foi
+     preciso escrever StackNode a mao; ate a conversao de string para inteiro
+     vem de um arquivo de exemplo (atoi.cl) e nao da linguagem.
+   - Nao ha genericos nem um downcast conveniente. Para ler o inteiro de um
+     StackCommand foi preciso declarar value() ja na classe base retornando 0,
+     o que vaza para toda a hierarquia uma operacao que so faz sentido em
+     IntCommand. A alternativa, usar case, resolveria o tipo mas deixaria o
+     codigo bem mais verboso.
