@@ -1,0 +1,70 @@
+================================================================================
+RELATÓRIO DE DESEMPENHO E AVALIAÇÃO DE REDUÇÃO EM CUDA
+Aluno: Júlio César
+================================================================================
+
+--------------------------------------------------------------------------------
+1. MEDIÇÕES DE TEMPO E MÉTRICAS DO NVPROF
+--------------------------------------------------------------------------------
+
+i & ii) Versão Original (COM Memória __shared__):
+- Tempo total de execução (comando time): _______ segundos
+- Tempo da função [CUDA memcpy HtoD]:     _______ (ms ou us)
+- Tempo do kernel sum_cuda:               _______ (ms ou us)
+
+iii) Versão Modificada (SEM Memória __shared__):
+- Tempo total de execução (comando time): _______ segundos
+- Tempo da função [CUDA memcpy HtoD]:     _______ (ms ou us)
+- Tempo do kernel sum_cuda:               _______ (ms ou us)
+
+iv) Comparação com Outras Implementações (Valores de referência anteriores):
+- Tempo Sequencial (CPU -O3):             _______ segundos
+- Tempo OpenMP (Multicore CPU -O3):       _______ segundos
+- Tempo OpenMP Target (GPU -O3):          _______ segundos
+
+--------------------------------------------------------------------------------
+2. ANÁLISE E EXPLICAÇÃO DOS RESULTADOS
+--------------------------------------------------------------------------------
+
+A) CUDA com Memória __shared__ vs. Sem Memória __shared__:
+A memória __shared__ é uma memória local e on-chip (dentro do SM da GPU), que possui 
+uma latência drasticamente menor do que a memória global (DRAM da placa). 
+
+Na versão original, os dados são carregados uma única vez para a __shared__ e a 
+redução em árvore acontece de forma extremamente rápida. Na versão modificada (sem 
+__shared__), a cada passo do laço (stride), as threads realizam leituras e escritas 
+direto na memória global. Isso causa gargalo de largura de banda e alta latência, 
+tornando o tempo do kernel sum_cuda substancialmente maior na versão modificada.
+
+B) Análise das funções [CUDA memcpy HtoD] e sum_cuda:
+- [CUDA memcpy HtoD]: Este tempo representa a cópia dos dados do Host (CPU) para 
+  o Device (GPU) através do barramento PCI-Express. É possível observar que este 
+  tempo permanece praticamente IDENTICO em ambas as versões (com e sem shared). 
+  Isso ocorre porque o volume de dados transferido antes do cálculo começar é o 
+  mesmo. Frequentemente, em problemas de redução simples, o tempo de transferência 
+  HtoD consome a maior parte do tempo total aferido pelo comando 'time'.
+  
+- sum_cuda: É o tempo puro de processamento na GPU. Ele é diretamente afetado 
+  pela arquitetura do kernel, sofrendo a penalização mencionada no item A quando 
+  removemos a memória compartilhada.
+
+C) CUDA vs. OpenMP na GPU:
+As diretivas de OpenMP para GPU (#pragma omp target teams distribute parallel for reduction) 
+são excelentes para produtividade, permitindo paralelizar o código com poucas linhas. 
+No entanto, o compilador gera uma estratégia genérica de redução.
+
+A versão em CUDA nativo (com __shared__) tende a apresentar um desempenho superior 
+ou equivalente à melhor versão do OpenMP na GPU. Isso ocorre porque o CUDA permite 
+um controle fino sobre a hierarquia de memória, organização dos blocos, sincronização 
+estrita de threads (__syncthreads) e o uso explícito da memória compartilhada, 
+evitando acessos desnecessários à memória global que o OpenMP nem sempre otimiza 
+com perfeição.
+
+D) CUDA vs. Sequencial e OpenMP (CPU Multicore):
+Para vetores massivos, a versão sequencial é severamente limitada pelo clock e pela 
+execução single-core. O OpenMP na CPU melhora o cenário dividindo a carga nos cores 
+disponíveis. Porém, a GPU (via CUDA) se sobressai imensamente no cálculo da redução 
+devido ao massivo paralelismo (milhares de cores simples executando simultaneamente), 
+desde que o tempo gasto transferindo os dados (memcpy HtoD e DtoH) não anule o ganho 
+da computação paralela.
+================================================================================
