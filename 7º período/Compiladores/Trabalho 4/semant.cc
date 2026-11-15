@@ -25,7 +25,7 @@ static Symbol
     Bool,
     concat,
     cool_abort,
-    copy,
+    copy_meth,
     Int,
     in_int,
     in_string,
@@ -56,7 +56,7 @@ static void initialize_constants(void)
     Bool        = idtable.add_string("Bool");
     concat      = idtable.add_string("concat");
     cool_abort  = idtable.add_string("abort");
-    copy        = idtable.add_string("copy");
+    copy_meth  = idtable.add_string("copy");
     Int         = idtable.add_string("Int");
     in_int      = idtable.add_string("in_int");
     in_string   = idtable.add_string("in_string");
@@ -123,7 +123,7 @@ void ClassTable::install_basic_classes() {
 			       append_Features(
 				       single_Features(::method(cool_abort, nil_Formals(), Object, no_expr())),
 				       single_Features(::method(type_name, nil_Formals(), Str, no_expr()))),
-			       single_Features(::method(copy, nil_Formals(), SELF_TYPE, no_expr()))),
+			       single_Features(::method(copy_meth, nil_Formals(), SELF_TYPE, no_expr()))),
 	       filename);
 
     // 
