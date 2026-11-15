@@ -85,11 +85,11 @@ static void initialize_constants(void)
 
 ClassTable::ClassTable(Classes classes) : semant_errors(0) , error_stream(cerr) {
     install_basic_classes();
-    for (Classes_class *it = classes; it != 0 && it->more(); it = it->rest())
-        add_class(it->first());
+    for (int i = classes->first(); classes->more(i); i = classes->next(i))
+        add_class(classes->nth(i));
     validate_inheritance();
-    for (Classes_class *it = classes; it != 0 && it->more(); it = it->rest())
-        validate_class_features(it->first());
+    for (int i = classes->first(); classes->more(i); i = classes->next(i))
+        validate_class_features(classes->nth(i));
 }
 
 void ClassTable::install_basic_classes() {
@@ -251,17 +251,20 @@ void ClassTable::add_class(Class_ c)
     ClassInfo ci;
     ci.node = c;
     ci.parent = cc->get_parent();
-    for (Features_class *it = cc->get_features(); it != 0 && it->more(); it = it->rest()) {
-        if (method_class *m = dynamic_cast<method_class *>(it->first())) {
+    Features_class *features = cc->get_features();
+    for (int i = features->first(); features->more(i); i = features->next(i)) {
+        Feature feature = features->nth(i);
+        if (method_class *m = dynamic_cast<method_class *>(feature)) {
             MethodInfo mi;
             mi.return_type = m->get_return_type();
-            for (Formals_class *fs = m->get_formals(); fs != 0 && fs->more(); fs = fs->rest()) {
-                formal_class *fm = dynamic_cast<formal_class *>(fs->first());
+            Formals_class *formals = m->get_formals();
+            for (int j = formals->first(); formals->more(j); j = formals->next(j)) {
+                formal_class *fm = dynamic_cast<formal_class *>(formals->nth(j));
                 mi.formal_names.push_back(fm->get_name());
                 mi.formal_types.push_back(fm->get_type_decl());
             }
             ci.methods[m->get_name()] = mi;
-        } else if (attr_class *a = dynamic_cast<attr_class *>(it->first())) {
+        } else if (attr_class *a = dynamic_cast<attr_class *>(feature)) {
             ci.attributes[a->get_name()] = a->get_type_decl();
         }
     }
@@ -381,14 +384,16 @@ void ClassTable::validate_class_features(Class_ c)
     if (ci == 0) return;
     std::set<Symbol> own_methods;
     std::set<Symbol> own_attributes;
-    for (Features_class *it = cc->get_features(); it != 0 && it->more(); it = it->rest()) {
-        Feature f = it->first();
+    Features_class *features = cc->get_features();
+    for (int i = features->first(); features->more(i); i = features->next(i)) {
+        Feature f = features->nth(i);
         if (method_class *m = dynamic_cast<method_class *>(f)) {
             MethodInfo mi;
             mi.return_type = m->get_return_type();
             std::set<Symbol> formal_names;
-            for (Formals_class *fs = m->get_formals(); fs != 0 && fs->more(); fs = fs->rest()) {
-                formal_class *fm = dynamic_cast<formal_class *>(fs->first());
+            Formals_class *formals = m->get_formals();
+            for (int j = formals->first(); formals->more(j); j = formals->next(j)) {
+                formal_class *fm = dynamic_cast<formal_class *>(formals->nth(j));
                 if (fm->get_name() == self)
                     semant_error(c) << "\"self\" cannot be used as a formal parameter." << endl;
                 if (!formal_names.insert(fm->get_name()).second)
@@ -453,8 +458,9 @@ void TypeChecker::install_features(Class_ c)
     class__class *cc = dynamic_cast<class__class *>(c);
     Symbol p = cc->get_parent();
     if (p != No_class && table->has_class(p)) install_features(table->info(p)->node);
-    for (Features_class *it = cc->get_features(); it != 0 && it->more(); it = it->rest()) {
-        attr_class *a = dynamic_cast<attr_class *>(it->first());
+    Features_class *features = cc->get_features();
+    for (int i = features->first(); features->more(i); i = features->next(i)) {
+        attr_class *a = dynamic_cast<attr_class *>(features->nth(i));
         if (a != 0) objects.add(a->get_name(), a->get_type_decl());
     }
 }
@@ -463,8 +469,8 @@ bool TypeChecker::check_actuals(Expressions actual, const MethodInfo& method,
                                 Expression where)
 {
     int count = 0;
-    for (Expressions_class *it = actual; it != 0 && it->more(); it = it->rest(), ++count) {
-        Symbol actual_type = check(it->first());
+    for (int i = actual->first(); actual->more(i); i = actual->next(i), ++count) {
+        Symbol actual_type = check(actual->nth(i));
         if (count >= (int)method.formal_types.size()) {
             error(where, "Method called with wrong number of arguments.");
         } else if (!table->conforms(actual_type, method.formal_types[count],
@@ -515,7 +521,8 @@ Symbol TypeChecker::check(Expression e)
         MethodInfo mi;
         if (!table->method(target, d->get_name(), mi)) {
             error(e, "Dispatch to undefined method " + std::string(d->get_name()->get_string()) + ".");
-            for (Expressions_class *it=d->get_actual(); it && it->more(); it=it->rest()) check(it->first());
+            Expressions_class *actual = d->get_actual();
+            for (int i=actual->first(); actual->more(i); i=actual->next(i)) check(actual->nth(i));
             return typed(e, Object);
         }
         check_actuals(d->get_actual(), mi, e);
@@ -527,7 +534,8 @@ Symbol TypeChecker::check(Expression e)
         MethodInfo mi;
         if (!table->method(lookup_type, d->get_name(), mi)) {
             error(e, "Dispatch to undefined method " + std::string(d->get_name()->get_string()) + ".");
-            for (Expressions_class *it=d->get_actual(); it && it->more(); it=it->rest()) check(it->first());
+            Expressions_class *actual = d->get_actual();
+            for (int i=actual->first(); actual->more(i); i=actual->next(i)) check(actual->nth(i));
             return typed(e, Object);
         }
         check_actuals(d->get_actual(), mi, e);
@@ -546,8 +554,9 @@ Symbol TypeChecker::check(Expression e)
         check(t->get_expr());
         std::set<Symbol> branch_types;
         Symbol result = No_type;
-        for (Cases_class *it=t->get_cases(); it && it->more(); it=it->rest()) {
-            branch_class *b = dynamic_cast<branch_class *>(it->first());
+        Cases_class *case_list = t->get_cases();
+        for (int i=case_list->first(); case_list->more(i); i=case_list->next(i)) {
+            branch_class *b = dynamic_cast<branch_class *>(case_list->nth(i));
             if (b->get_type_decl() == SELF_TYPE) error(e, "SELF_TYPE cannot be used as a case branch type.");
             if (!table->type_defined(b->get_type_decl())) error(e, "Undefined type " + std::string(b->get_type_decl()->get_string()) + " in case branch.");
             if (!branch_types.insert(b->get_type_decl()).second) error(e, "Duplicate branch type " + std::string(b->get_type_decl()->get_string()) + ".");
@@ -560,7 +569,8 @@ Symbol TypeChecker::check(Expression e)
     }
     if (block_class *b = dynamic_cast<block_class *>(e)) {
         Symbol result = Object;
-        for (Expressions_class *it=b->get_body(); it && it->more(); it=it->rest()) result = check(it->first());
+        Expressions_class *body = b->get_body();
+        for (int i=body->first(); body->more(i); i=body->next(i)) result = check(body->nth(i));
         return typed(e, result);
     }
     if (let_class *l = dynamic_cast<let_class *>(e)) {
@@ -610,8 +620,9 @@ void TypeChecker::check_feature(Feature f)
             error(a->get_init(), "Attribute initializer type does not conform to declared type.");
     } else if (method_class *m = dynamic_cast<method_class *>(f)) {
         objects.enter();
-        for (Formals_class *it=m->get_formals(); it && it->more(); it=it->rest()) {
-            formal_class *fm=dynamic_cast<formal_class *>(it->first()); objects.add(fm->get_name(),fm->get_type_decl());
+        Formals_class *formals = m->get_formals();
+        for (int i=formals->first(); formals->more(i); i=formals->next(i)) {
+            formal_class *fm=dynamic_cast<formal_class *>(formals->nth(i)); objects.add(fm->get_name(),fm->get_type_decl());
         }
         Symbol body = check(m->get_expr());
         Symbol current_name = dynamic_cast<class__class *>(current_class)->get_name();
@@ -622,12 +633,13 @@ void TypeChecker::check_feature(Feature f)
 
 void TypeChecker::check_program(Classes classes)
 {
-    for (Classes_class *it=classes; it && it->more(); it=it->rest()) {
-        current_class=it->first();
+    for (int i=classes->first(); classes->more(i); i=classes->next(i)) {
+        current_class=classes->nth(i);
         objects=ObjectEnvironment(); objects.enter(); objects.add(self,SELF_TYPE);
         install_features(current_class);
         class__class *cc=dynamic_cast<class__class *>(current_class);
-        for (Features_class *fs=cc->get_features(); fs && fs->more(); fs=fs->rest()) check_feature(fs->first());
+        Features_class *features = cc->get_features();
+        for (int j=features->first(); features->more(j); j=features->next(j)) check_feature(features->nth(j));
     }
 }
 
