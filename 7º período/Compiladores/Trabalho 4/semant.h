@@ -2,7 +2,7 @@
 #define SEMANT_H_
 
 #include <assert.h>
-#include <iostream.h>
+#include <iostream>
 #include <map>
 #include <set>
 #include <string>
@@ -11,6 +11,8 @@
 #include "stringtab.h"
 #include "symtab.h"
 #include "list.h"
+
+using namespace std;
 
 #define TRUE 1
 #define FALSE 0
