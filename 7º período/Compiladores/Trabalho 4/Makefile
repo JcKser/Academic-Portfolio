@@ -1,11 +1,11 @@
 
 ASSN = 4
-CLASS= ?
-CLASSDIR= ?
-LIB= ?
-AR= ?
-ARCHIVE_NEW= ?
-RANLIB= ?
+CLASS= compiladores
+CLASSDIR= /var/tmp/cool
+LIB= -L/usr/lib -lfl
+AR= ar
+ARCHIVE_NEW= -cr
+RANLIB= ar -qs
 
 SRC= semant.cc semant.h cool-tree.h cool-tree.handcode.h good.cl bad.cl README
 CSRC= semant-phase.cc symtab_example.cc  handle_flags.cc  ast-lex.cc ast-parse.cc utilities.cc stringtab.cc dumptype.cc tree.cc cool-tree.cc
