@@ -9,6 +9,7 @@
 
 extern int semant_debug;
 extern char *curr_filename;
+int curr_lineno = 0;
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -642,40 +643,6 @@ void TypeChecker::check_program(Classes classes)
         for (int j=features->first(); features->more(j); j=features->next(j)) check_feature(features->nth(j));
     }
 }
-
-/* The support tree keeps these methods virtual so later compiler phases can
-   print an annotated tree.  The generated dump routines remain the canonical
-   structural printer; each expression additionally prints its inferred type. */
-void program_class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void class__class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void method_class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void attr_class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void formal_class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void branch_class::dump_with_types(ostream& s, int n) { dump(s, n); }
-void assign_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void static_dispatch_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void dispatch_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void cond_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void loop_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void typcase_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void block_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void let_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void plus_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void sub_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void mul_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void divide_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void neg_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void lt_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void eq_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void leq_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void comp_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void int_const_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void bool_const_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void string_const_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void new__class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void isvoid_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void no_expr_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
-void object_class::dump_with_types(ostream& s, int n) { dump(s, n); dump_type(s, n); }
 
 
 
