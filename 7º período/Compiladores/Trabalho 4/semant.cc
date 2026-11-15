@@ -1,3 +1,4 @@
+int curr_lineno = 0;
 
 
 #include <stdlib.h>
